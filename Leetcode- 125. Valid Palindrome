@@ -1,0 +1,33 @@
+class Solution {
+public:
+    void tolowercase(string &s) {
+        int i = 0;
+        while (s[i] != '\0') {
+            if (s[i] >= 'A' && s[i] <= 'Z') {
+                s[i] = s[i] - 'A' + 'a';
+            }
+            i++;
+        }
+    }
+    bool isPalindrome(string s) {
+        tolowercase(s);
+        int start = 0;
+        int end = s.size() - 1;
+        while (start < end) {
+            while (start < end && !((s[start] >= 'a' && s[start] <= 'z') ||
+                                    (s[start] >= '0' && s[start] <= '9'))) {
+                start++;
+            }
+            while (start < end && !((s[end] >= 'a' && s[end] <= 'z') ||
+                                    (s[end] >= '0' && s[end] <= '9'))) {
+                end--;
+            }
+            if (s[start] != s[end]) {
+                return 0;
+            }
+            start++;
+            end--;
+        }
+        return 1;
+    }
+};
