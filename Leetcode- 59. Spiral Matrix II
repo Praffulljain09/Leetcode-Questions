@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> matrix(n, vector<int>(n, 0));
+        int total = n * n;
+        int count = 0;
+        int startcol = 0;
+        int endcol = n - 1;
+        int startrow = 0;
+        int endrow = n - 1;
+        while (count < total) {
+            for (int i = startcol; count < total && i <= endcol; i++) {
+                matrix[startrow][i] = count + 1;
+                count++;
+            }
+            startrow++;
+            for (int i = startrow; count < total && i <= endrow; i++) {
+                matrix[i][endcol] = count + 1;
+                count++;
+            }
+            endcol--;
+            for (int i = endcol; count < total && i >= startcol; i--) {
+                matrix[endrow][i] = count + 1;
+                count++;
+            }
+            endrow--;
+            for (int i = endrow; count < total && i >= startrow; i--) {
+                matrix[i][startcol] = count + 1;
+                count++;
+            }
+            startcol++;
+        }
+        return matrix;
+    }
+};
